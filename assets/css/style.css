@@ -1,0 +1,12 @@
+.container {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}
+img {
+    width: 500px;
+    height: auto;
+}
+#start {
+    color: green;
+}

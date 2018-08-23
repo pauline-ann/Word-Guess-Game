@@ -1,48 +1,95 @@
 
-// initial variables
-var wordBank = [
-    { word: "zelda" },
-    { word: "triforce" },
-    { word: "mastersword" }
-];
-var guessesLeft = 10;
-var wins = 0;
+// new game
+
+function clearBoard() {
+    guessesLeft = 10;
+    score = 0;
+    wordIndex = 0;
+    document.getElementById("answer").innerHTML = "_ _ _ _ _";
+    document.getElementById("start").style.visibility = "visible";
+}
+
+clearBoard();
+
+// define variables
+
+var wordBank = ["zelda", "triforce", "mastersword"];
+var zelda = [" _ ", " _ ", " _ ", " _ ", " _ "];
+var triforce = [" _ ", " _ ", " _ ", " _ ", " _ ", " _ ", " _ ", " _ "];
+var mastersword = [" _ ", " _ ", " _ ", " _ ", " _ ", " _ ", " _ ", " _ ", " _ ", " _ ", " _ "];
+var answerBank = [zelda, triforce, mastersword];
+
 var wordIndex = 0;
+var currentWord = wordBank[wordIndex];
 
-// to limit characters that may be pressed
-var alphabet = "abcdefghijklmnopqrstuvwxyz";
+var guessesLeft = 10;
+var score = 0;
 
+//console.log
+
+//will not be shown to player
+console.log("Guessing word: " + currentWord);
+//incorporate into changing id in html
+console.log("Guesses left: " + guessesLeft);
+console.log("Wins: " + score);
 console.log("Press any key to start game");
 
-document.onkeyup = function (event) {
+//define functions
 
-    var currentWord = wordBank[wordIndex].word;
-    var userGuess = event.key;
+    function produceWord() {
 
-    console.log("Guesses left: " + guessesLeft);
-    console.log("Wins: " + wins);
+        for (var i = 0; i < wordBank.length; i++) {
+            
+            answerBank[i];
 
-    //wouldn't show on document
-    console.log("Guessing word: " + currentWord);
+            var wordOnScreen = document.getElementById("answer");
+
+            wordOnScreen.innerHTML = answerBank[i];
+            
+        }
+    }
 
 
     document.onkeyup = function (event) {
 
-        console.log("User guessed: " + userGuess);
+        this.getElementById("start").style.visibility = "hidden";
 
-        for (var guessesLeft, guessesLeft > 0, )
+        var userGuess = event.key;
+
+        console.log("User guessed: " + userGuess);
+    
+        if (guessesLeft > 0) {
+
             if (currentWord.includes(userGuess)) {
                 console.log("true");
-                wins++;
+                // letter should fill answer array
+                // update on html
             }
             else {
                 console.log("false");
                 guessesLeft--;
+                console.log("Guesses left: " + guessesLeft);
+                // letter will fill answer array
+                // show on letters guessed
+                // shouldnt be able to be used to guess anymore
             }
+        }
+        else {
+            clearBoard();
+        }
     }
-}
-    // restart game when finished with words
 
-    //    if (wordIndex < wordBank.length-1) {
-    //      index ++;
-    //  } 
+
+    
+    produceWord();
+    //where to place this function?
+
+
+
+
+
+    //win when word is fully complete
+
+    // restart game when
+        // all words complete
+        // out of guesses
