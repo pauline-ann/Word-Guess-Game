@@ -1,5 +1,5 @@
 .container {
-    width: 50%;
+    width: 75%;
     margin: auto;
     text-align: center;
 }
@@ -7,6 +7,14 @@ img {
     width: 500px;
     height: auto;
 }
-#start {
+#message {
+    padding-top: 10px;
     color: green;
+}
+#lettersguessed {
+    margin-bottom: 25px;
+}
+body {
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
