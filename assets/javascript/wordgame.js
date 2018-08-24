@@ -1,10 +1,3 @@
-/*
-clearBoard();
-// restart game when
-// all words complete
-// out of guesses
-*/
-
 // Define variables
 var wordBank = ["zelda", "triforce", "mastersword"];
 var answerBank = [];
@@ -25,6 +18,12 @@ answerDisplay.textContent = placeholder.join(" ");
 guessDisplay.textContent = "None";
 
 // Define global functions
+/*
+clearBoard();
+// restart game when
+// all words complete
+// out of guesses
+*/
 function clearBoard() {
     guessesLeft = 10;
     score = 0;
