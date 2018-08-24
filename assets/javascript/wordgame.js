@@ -37,7 +37,7 @@ function clearBoard() {
 
 // 
 function getPlaceholder(word) {
-    return word.split("").map(function(letter) {
+    return word.split("").map(function (letter) {
         return "_";
     });
 }
@@ -57,23 +57,24 @@ document.onkeyup = function (event) {
     for (i = wordIndex; i < wordBank.length; i++) {
 
         console.log(wordIndex);
-        wordBank[i];
-    
+        currentWord = wordBank[i];
+        answerDisplay.textContent = placeholder.join(" ");
+
         // Current word is incomplete
         if (placeholder.includes("_") === true) {
-    
+
             // >1 guess left & new user guess
             if (guessesLeft > 1 && answerBank.indexOf(userGuess) === -1) {
-        
+
                 // Guess correct
                 if (currentWord.includes(userGuess)) {
-        
+
                     console.log("true");
                     this.getElementById("message").style.visibility = "hidden";
-        
+
                     // Fill placeholder function with correct guess
                     for (let i = 0; i < currentWord.length; i++) {
-        
+
                         if (userGuess === currentWord[i]) {
                             placeholder[i] = userGuess;
                         }
@@ -83,9 +84,19 @@ document.onkeyup = function (event) {
 
                     // Current word is completed
                     if (placeholder.includes("_") === false) {
+
                         wordIndex++;
+                        currentWord = wordBank[wordIndex];
+                        placeholder = getPlaceholder(currentWord);
+
                         score++;
                         document.getElementById("score").innerHTML = score;
+
+                        answerBank = [];
+
+                        if (score === 3) {
+                            document.getElementById("message").innerHTML = "You win!"
+                        }
                     }
 
                 } // Guess incorrect
@@ -96,18 +107,18 @@ document.onkeyup = function (event) {
                 } // Guesses (correct/incorrect) are stored in answer bank and displayed
                 answerBank.push(userGuess);
                 guessDisplay.textContent = answerBank.join(", ");
-        
+
             } // >1 guess left & already guessed
             else if (guessesLeft > 1 && answerBank.indexOf(userGuess) != -1) {
                 document.getElementById("message").style.visibility = "visible";
                 document.getElementById("message").innerHTML = "You already guessed that!";
-        
+
             } // One guess left, new user guess
             else if (guessesLeft === 1 && answerBank.indexOf(userGuess) === -1) {
-                
+
                 //Guess correct
                 if (currentWord.includes(userGuess)) {
-        
+
                     console.log("true");
                     this.getElementById("message").style.visibility = "hidden";
                     for (let i = 0; i < currentWord.length; i++) {
@@ -132,7 +143,3 @@ document.onkeyup = function (event) {
         }
     }
 }
-
- if (score === 3) {
-    document.getElementById("message").innerHTML = "You win!"
- }
